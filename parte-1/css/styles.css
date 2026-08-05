@@ -11,7 +11,13 @@ body{
     flex-direction: column;
     min-height: 100vh;
 }
-header{
+header {
+    position: sticky; /* Cambia fixed por sticky */
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -103,3 +109,46 @@ th {
 td:first-child, th:first-child {
     width: 220px;
 }
+
+.mainBiographic{
+    display: flex;
+    gap: 20px;
+    background-color: #1e5a22; /* verde de fondo */
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.mainResume{
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.mainResume ul li{
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.mainResume ul li p {
+    margin-top: 5px; 
+    margin-bottom: 0;
+}
+
+/* Centrar la lista superior y quitar los viñetas */
+.mainResume .ulResume {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style: none; /* Quita los puntos/viñetas si no los deseas arriba */
+    padding: 0;
+}
+
+.mainResume .ulResume li a:hoover {
+    text-decoration: none;
+    text-decoration:overline underline;
+    color: rgb(246, 243, 243);
+}
+
