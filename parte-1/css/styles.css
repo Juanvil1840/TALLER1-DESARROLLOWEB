@@ -1,3 +1,5 @@
+@import url('https://googleapis.com');
+
 * {
     margin: 0;
     padding: 0;
@@ -28,6 +30,7 @@ header {
 h1{
     color: white;
     font-size: 40px;
+    text-decoration:underline #86d6ef;
 }
 
 header ul{
@@ -37,13 +40,14 @@ header ul{
 }
 
 header ul a{
-    text-decoration: none;
     color: white;
     font-size: 14px;
 }
 
 a:hover{
     text-decoration: overline underline;
+    color: #ffee00;
+    cursor: pointer;
 }
 
 main{
@@ -93,6 +97,9 @@ table{
     width: 100%;
     border-collapse: collapse;
     color: white;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 th, td {
@@ -103,11 +110,23 @@ th, td {
 
 th {
     border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    background-color: #0b234d;
+    color: white;
 }
 
 
 td:first-child, th:first-child {
     width: 220px;
+}
+
+table tr:nth-child(odd){
+    background-color: #03bf22;
+    color: black;
+}
+
+table tr:nth-child(even){
+    background-color: white;
+    color: black;
 }
 
 .mainBiographic{
@@ -146,29 +165,70 @@ td:first-child, th:first-child {
     padding: 0;
 }
 
-.mainResume .ulResume li a:hoover {
-    text-decoration: none;
-    text-decoration:overline underline;
+.mainResume .ulResume li a {
     color: rgb(246, 243, 243);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.mainResume .ulResume li a :hover{
+    text-decoration: underline, overline;
+}
+
+.pre ul li::marker,
+.exp ul li::marker,
+.est ul li::marker,
+.pro ul li::marker {
+    color: yellow;
 }
 
 .pre{
     background: linear-gradient(to right, #156780, #5c838f);
     padding:30px;
+    border-radius:12px;
 }
+
 
 .exp{
     background: linear-gradient(to right, #798015, #8c8f5c);
     padding:30px;
+    border-radius:12px;
 }
 
 .est{
     background: linear-gradient(to right, #158035, #5c8f5c);
     padding:30px;
+    border-radius:12px;
 }
 
 .pro{
     background: linear-gradient(to right, #803715, #8f6f5c);
     padding:30px;
+    border-radius:12px;
+}
+
+h2{
+    text-decoration: underline #86d6ef;
+}
+
+.hob{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.hob .enla ul a li{
+    color: white;
+    text-decoration: none;
+}
+
+.hob .enla{
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hob{
+    
 }
 
