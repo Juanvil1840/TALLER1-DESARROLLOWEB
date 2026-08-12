@@ -13,7 +13,18 @@
             <h1>PixelVault</h1>
         </div>
         <div class="shop">
-            <img src="../images/shopping-cart.png" height="50px" alt="shopping car">
+            <a href="#"><img src="../images/shopping-cart.png" height="50px" alt="shopping cart"></a>
+
+            <div class="carrito-desplegable">
+                <h3>Carrito de Compras</h3>
+                <div class="contenido-carrito">
+                    <p>El carrito está vacío.</p>
+                </div>
+                <div class="total-carrito">
+                    <p>Total: $0</p>
+                    <button class="btn-checkout">Ver Carrito / Pagar</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -61,8 +72,48 @@
                 </div>
                 <button>Agregar al Carrito</button>
             </div>
+        </section>
+
+        <section class="agregar">
+
+            <h2>Agregar Articulo</h2>
+
+            <form class="formulario-producto">
+
+                <div class="campo">
+                    <label for="nombre">Nombre del producto:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Nintendo Switch" required>
+                </div>
+
+                <div class="campo">
+                    <label for="descripcion">Descripción</label>
+                    <input type="text" id="Descripcion1" name="Descripcion1" placeholder="Ej: Estado: Usado o Tipo: Consola" required>
+                </div>
+
+                <div class="campo">
+                    <label for="descripcion">Descripción</label>
+                    <input type="text" id="Descripcion2" name="Descripcion2" placeholder="Ej: Estado: Usado o Tipo: Consola" required>
+                </div>
+
+                <div class="campo">
+                    <label for="descripcion">Descripción</label>
+                    <input type="text" id="Descripcion3" name="Descripcion3" placeholder="Ej: Estado: Usado o Tipo: Consola" required>
+                </div>
+
+                <div class="campo">
+                    <labal for="URLimagen">URL de Imagen</labal>
+                    <input type="url" id="imagen" name="imagen" placeholder="Inserte Url de la imagen" required>
+                </div>
+
+                <div class="campo">
+                    <label for="precio">Precio ($):</label>
+                    <input type="number" id="precio" name="precio" placeholder="100000" min="1000" required>
+                </div>
 
 
+
+                <button type="submit">Guardar Producto</button>
+        </form>
 
         </section>
 

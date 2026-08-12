@@ -28,6 +28,25 @@ header .logo h1{
 
 header .shop{
     padding:15px;
+    position: relative;
+    display: inline-block;
+}
+
+.shop .carrito-desplegable {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 100%;       /* Aparece justo debajo del icono */
+    right: 0;        /* Se alinea a la derecha del contenedor .shop */
+    width: 300px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    padding: 15px;
+    z-index: 100;    /* Asegura que quede por encima de otros elementos */
+}
+
+.shop:hover .carrito-desplegable {
+    display: block;
 }
 
 /*######PORTADA PRINCIPAL###########*/
@@ -88,7 +107,7 @@ main .productos h2{
 }
 
 .productos .tarjeta {
-    /* calc(25% - 15px) descuenta el espacio del 'gap para que quepan exactamente 4 */
+    /* calc(25% - 15px) descuenta el espacio del 'gap para que quepan 4 tarjetas */
     width: calc(25% - 15px); 
     box-sizing: border-box;
     padding: 20px;
@@ -115,8 +134,8 @@ button{
     padding: 12px 24px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #cf6400; /* Azul */
-    color: #ffffff;            /* Texto blanco */
+    background-color: #cf6400; 
+    color: #ffffff;           /* Texto blanco */
     border: none;              /* Quita el borde gris por defecto */
     border-radius: 20px;
     cursor: pointer;           /* Cambia el cursor a una mano */
@@ -129,4 +148,39 @@ button:hover {
 
 button:active {
   transform: scale(0.98);    /* Se encoge ligeramente */
+}
+
+main .agregar {
+    margin: 40px auto; /* 40px arriba/abajo, auto a los lados para centrar */
+    padding: 20px;
+    width: 500px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos internos (inputs, botones, etc.) */
+    gap: 20px;
+    border-radius: 20px;
+    background-color: #d2d461;
+    box-shadow: 10px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.campo{
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+input{
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    width: 350px;
 }
