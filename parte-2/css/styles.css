@@ -184,3 +184,11 @@ input{
     border-radius: 20px;
     width: 350px;
 }
+
+/* Controla el tamaño de la imagen dentro de cada tarjeta */
+.tarjeta img {
+    width: 100%;          
+    max-height: 200px;     
+    object-fit: contain;   /* Mantiene la proporcion de la imagen sin deformarla ni recortarla */
+    border-radius: 8px;    
+}
