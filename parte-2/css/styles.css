@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+/*#####ENCABEZADO######*/
+header{
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1000;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: linear-gradient(to bottom,rgb(255, 255, 255) 80%, transparent 100%);
+}
+header .logo{
+    display: flex;
+    flex-direction: row;
+}
+
+header .logo h1{
+    padding: 15px;
+}
+
+header .shop{
+    padding:15px;
+}
+
+/*######PORTADA PRINCIPAL###########*/
+main .portada{
+    height: 100vh;
+    background-image: linear-gradient(to left, #99aa00 10%, #ad4602 80%);
+    display: flex;
+    flex-direction: row;
+    content: center;
+    color: white;
+}
+
+.portada .info{
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
+    justify-content:center;
+    gap:10px;
+}
+
+.portada .info h1{
+    font-size:50px;
+    font-weight: bold;
+    height: 100px;
+}
+
+.portada .info p{
+    font-size:15px;
+    color:#d1d3b5;
+    padding-left:15%;
+    padding-right:5%
+}
+
+
+.portada img{
+    height: 100vh;
+}
+
+/*########### PRODUCTOS #########*/
+
+main .productos{
+
+    margin: 30px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;             /* Permite que las tarjetas salten a la siguiente fila */
+    justify-content: flex-start; /* O space-between según prefieras el alineado */
+    gap: 20px;                   /* Espacio uniforme entre filas y columnas */
+    
+}
+
+main .productos h2{
+    width: 100%;                /* Ocupa el 100% de la fila superior */
+    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.productos .tarjeta {
+    /* calc(25% - 15px) descuenta el espacio del 'gap para que quepan exactamente 4 */
+    width: calc(25% - 15px); 
+    box-sizing: border-box;
+    padding: 20px;
+    /* Usamos min-height en vez de height fijo para que respire */
+    min-height: 400px; 
+    background-color: #d2d461;
+    border-radius: 15px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;          /* Centra horizontalmente todo */
+    justify-content: space-between; /* Distribuye los bloques arriba, centro y abajo */
+    text-align: center;           /* Centra los textos internos */
+    box-sizing: border-box;       /* Evita que el padding sume al ancho/alto */
+    box-shadow: 10px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.productos .tarjeta .Precio{
+    display: flex;
+    flex-direction: row;
+}
+
+button{
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #cf6400; /* Azul */
+    color: #ffffff;            /* Texto blanco */
+    border: none;              /* Quita el borde gris por defecto */
+    border-radius: 20px;
+    cursor: pointer;           /* Cambia el cursor a una mano */
+    transition: background 0.3s ease; /* Suaviza el cambio de color */
+}
+
+button:hover {
+  background-color: #0056b3; /* Azul más oscuro */
+}
+
+button:active {
+  transform: scale(0.98);    /* Se encoge ligeramente */
+}
