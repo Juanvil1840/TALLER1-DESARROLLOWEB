@@ -1,4 +1,4 @@
-// --- 1. Referencias al DOM del Formulario ---
+// Referencias al DOM del Formulario 
 const formNombre = document.getElementById('nombre');
 const formDescripcion1 = document.getElementById('Descripcion1');
 const formDescripcion2 = document.getElementById('Descripcion2');
@@ -7,13 +7,13 @@ const formURL = document.getElementById('imagen');
 const formPrecio = document.getElementById('precio');
 const formProducto = document.getElementById('form-producto');
 
-// --- 2. Referencias al DOM del Carrito y Tienda ---
+// Referencias al DOM del Carrito y Tienda 
 const contenedorProductos = document.getElementById('contenedor-productos');
 const contenedorCarrito = document.getElementById('lista-carrito');
 const totalPrecio = document.getElementById('total-precio');
 const btnVaciar = document.getElementById('btn-vaciar');
 
-// --- 3. Base de Datos / Estado Local ---
+// lista de productos
 const productos = [
     {
         id: 1,
@@ -38,7 +38,7 @@ const productos = [
 // El carrito guardará objetos con la propiedad "cantidad"
 const carrito = [];
 
-// --- 4. Funciones de Renderizado ---
+// Funciones de Renderizado
 
 // Renderizar la lista de productos disponibles en la tienda
 function renderizarProductos() {
@@ -104,7 +104,7 @@ function renderizarCarrito() {
     totalPrecio.textContent = total.toLocaleString();
 }
 
-// --- 5. Logica de Interacción ---
+// Logica de Interacción 
 
 // Agregar producto al carrito (maneja cantidades)
 function agregarAlCarrito(idProducto) {
@@ -155,7 +155,7 @@ formProducto.addEventListener('submit', function(e) {
     formProducto.reset();
 });
 
-// --- 6. Inicializar ---
+// Inicializar 
 renderizarProductos();
 renderizarCarrito();
 
