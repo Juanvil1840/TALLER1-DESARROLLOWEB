@@ -1,14 +1,19 @@
-//Guardar info del formulario
-const formNombre = document.getElementById('nombre'); // nombre del articulo a agregar
-//Descripciones del articulo
+// --- 1. Referencias al DOM del Formulario ---
+const formNombre = document.getElementById('nombre');
 const formDescripcion1 = document.getElementById('Descripcion1');
 const formDescripcion2 = document.getElementById('Descripcion2');
 const formDescripcion3 = document.getElementById('Descripcion3');
-const formURL = document.getElementById('imagen'); // URL de la imagen a utilizar
-const formPrecio = document.getElementById('precio') // precio del articulo
+const formURL = document.getElementById('imagen');
+const formPrecio = document.getElementById('precio');
+const formProducto = document.getElementById('form-producto');
 
+// --- 2. Referencias al DOM del Carrito y Tienda ---
+const contenedorProductos = document.getElementById('contenedor-productos');
+const contenedorCarrito = document.getElementById('lista-carrito');
+const totalPrecio = document.getElementById('total-precio');
+const btnVaciar = document.getElementById('btn-vaciar');
 
-// Lista de productos
+// --- 3. Base de Datos / Estado Local ---
 const productos = [
     {
         id: 1,
@@ -30,21 +35,19 @@ const productos = [
     }
 ];
 
-// 1. Seleccionamos el contenedor HTML donde iran las tarjetas
-const contenedorProductos = document.getElementById('contenedor-productos');
+// El carrito guardará objetos con la propiedad "cantidad"
+const carrito = [];
 
-// 2. Definimos la funcion encargada de dibujar los productos en pantalla
+// --- 4. Funciones de Renderizado ---
+
+// Renderizar la lista de productos disponibles en la tienda
 function renderizarProductos() {
-    // Mantener el titulo y limpiar el contenido previo de la seccion
     contenedorProductos.innerHTML = '<h2>Productos Disponibles (TIENDA)</h2>';
 
-    // Recorremos el arreglo de productos
     productos.forEach(producto => {
-        // Creamos un elemento div para la tarjeta
         const tarjeta = document.createElement('div');
-        tarjeta.classList.add('tarjeta'); // Le aplicamos tu clase CSS existente
+        tarjeta.classList.add('tarjeta');
 
-        // Insertamos la estructura HTML interna de la tarjeta
         tarjeta.innerHTML = `
             <img src="${producto.imagen}" alt="${producto.nombre}" size="150px">
             <h3>${producto.nombre}</h3>
@@ -55,10 +58,106 @@ function renderizarProductos() {
             <button class="btn-agregar">Agregar al Carrito</button>
         `;
 
-        // Agregamos la tarjeta creada dentro del contenedor principal
+        const btnAgregar = tarjeta.querySelector('.btn-agregar');
+        btnAgregar.addEventListener('click', () => {
+            agregarAlCarrito(producto.id);
+        });
+
         contenedorProductos.appendChild(tarjeta);
     });
 }
 
-// 3. Ejecutamos la funcion para que se muestren los productos al cargar la pagina
+// Renderizar la lista del carrito con imágenes y cantidad
+function renderizarCarrito() {
+    contenedorCarrito.innerHTML = '';
+
+    if (carrito.length === 0) {
+        contenedorCarrito.innerHTML = '<p>El carrito está vacío.</p>';
+        totalPrecio.textContent = '0';
+        return;
+    }
+
+    let total = 0;
+
+    carrito.forEach((item) => {
+        const itemCarrito = document.createElement('div');
+        itemCarrito.classList.add('item-carrito');
+        
+        // Estructura que incluye la imagen, nombre, cantidad y subtotal
+        itemCarrito.innerHTML = `
+            <img src="${item.imagen}" alt="${item.nombre}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; margin-right: 8px;">
+            <div class="info-item" style="flex-grow: 1;">
+                <p style="margin: 0; font-size: 0.9em; font-weight: bold;">${item.nombre}</p>
+                <p style="margin: 0; font-size: 0.8em; color: #555;">
+                    $${item.precio.toLocaleString()} x <strong>${item.cantidad}</strong>
+                </p>
+            </div>
+            <span style="font-weight: bold;">$${(item.precio * item.cantidad).toLocaleString()}</span>
+        `;
+
+        contenedorCarrito.appendChild(itemCarrito);
+
+        // Sumar al total: precio x cantidad
+        total += item.precio * item.cantidad;
+    });
+
+    totalPrecio.textContent = total.toLocaleString();
+}
+
+// --- 5. Logica de Interacción ---
+
+// Agregar producto al carrito (maneja cantidades)
+function agregarAlCarrito(idProducto) {
+    // 1. Verificar si el producto ya existe en el carrito
+    const itemEnCarrito = carrito.find(item => item.id === idProducto);
+
+    if (itemEnCarrito) {
+        // Si ya existe, solo incrementamos su cantidad
+        itemEnCarrito.cantidad++;
+    } else {
+        // Si no existe, buscamos el producto original
+        const productoEncontrado = productos.find(p => p.id === idProducto);
+        if (productoEncontrado) {
+            // Guardar una copia del producto agregándo la propiedad 'cantidad: 1'
+            carrito.push({
+                ...productoEncontrado,
+                cantidad: 1
+            });
+        }
+    }
+
+    // Actualizamos la vista del carrito
+    renderizarCarrito();
+}
+
+// Vaciar el carrito
+btnVaciar.addEventListener('click', () => {
+    carrito.length = 0;
+    renderizarCarrito();
+});
+
+// Agregar nuevo producto desde el formulario
+formProducto.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nuevoProducto = {
+        id: Date.now(),
+        nombre: formNombre.value,
+        description1: formDescripcion1.value,
+        description2: formDescripcion2.value,
+        description3: formDescripcion3.value,
+        imagen: formURL.value,
+        precio: Number(formPrecio.value)
+    };
+
+    productos.push(nuevoProducto);
+    renderizarProductos();
+    formProducto.reset();
+});
+
+// --- 6. Inicializar ---
 renderizarProductos();
+renderizarCarrito();
+
+
+
